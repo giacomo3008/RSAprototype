@@ -1,3 +1,4 @@
+import { createId } from '../lib/id';
 import type {
   State,
   Session,
@@ -13,7 +14,7 @@ import type {
 import { EVENT_DEFAULTS } from '../domain/types';
 import { has, requireCapability, eligible, conversationAllowed } from '../domain/permissions';
 import type { Repository } from './repository';
-const id = (prefix: string) => `${prefix}-${crypto.randomUUID().slice(0, 8)}`;
+const id = (prefix: string) => `${prefix}-${createId()}`;
 export const now = (s: State) => new Date(Date.now() + s.clockOffset).toISOString();
 const checksum = (text: string) => {
   let h = 2166136261;

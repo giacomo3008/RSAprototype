@@ -1,3 +1,4 @@
+import { createId } from '../lib/id';
 import { useState, useEffect } from 'react';
 import {
   X,
@@ -33,7 +34,7 @@ export function Report({
   const [draft, setDraft] = useState<EventDraft>(() => {
     const now = new Date(Date.now() + w.state.clockOffset).toISOString();
     const initial = {
-      key: crypto.randomUUID(),
+      key: createId(),
       wardId: w.session.wardId,
       type: 'Fall' as EventType,
       priority: 'High' as Priority,

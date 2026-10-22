@@ -234,3 +234,30 @@ test('assistant has source links and denies cross-ward questions; technical admi
   await page.goto('/#chat');
   await expect(page.getByRole('heading', { name: 'This page is unavailable' })).toBeVisible();
 });
+
+test('report and downstream mutations work when crypto.randomUUID is unavailable', async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.addInitScript(() =>
+    Object.defineProperty(globalThis.crypto, 'randomUUID', {
+      value: undefined,
+      configurable: true,
+    }),
+  );
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Report event', exact: false }).first().click();
+  await expect(page.getByRole('heading', { name: 'Report an event' })).toBeVisible();
+  await page.getByRole('combobox', { name: 'Resident', exact: true }).selectOption('R-014');
+  await page
+    .getByPlaceholder('Add a short, factual description…')
+    .fill('Report without randomUUID.');
+  await page.getByRole('button', { name: 'Send event', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Event sent' })).toBeVisible();
+  await page.getByRole('button', { name: 'View event', exact: true }).click();
+  const detail = page.getByRole('dialog', { name: 'Event details' });
+  await detail.getByRole('button', { name: 'Take charge', exact: true }).click();
+  await expect(detail.getByRole('button', { name: 'Close event', exact: true })).toBeVisible();
+  expect(errors).toEqual([]);
+});
