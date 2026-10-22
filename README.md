@@ -7,44 +7,10 @@ Prototipo web funzionante per il coordinamento di una RSA, realizzato con **Reac
 Richiede Node.js **22.12+** (verificato con Node 24) e npm.
 
 ```bash
-cd /workspace/RSAprototype
 npm ci
 npm run dev
 ```
-
-Apri nel browser l'indirizzo stampato da Vite (porta predefinita **5173**). Il server ascolta su tutte le interfacce per l'anteprima dell'ambiente. Sul tuo computer esegui gli stessi comandi nella cartella del progetto.
-
-In questo ambiente cloud, se npm non può scrivere nella cache di sistema:
-
-```bash
-npm ci --cache /workspace/.npm-cache
-```
-
-```bash
-npm run build       # TypeScript e bundle di produzione in dist/
-npm run preview     # prova il bundle, porta 4173
-npm test            # test dei servizi e delle transazioni IndexedDB
-npm run test:browser # test completi con server Vite già avviato
-npm run format      # formatta il sorgente modificabile
-```
-
-I test browser usano Chromium di sistema in `/usr/bin/chromium`. Su un'altra macchina imposta `CHROMIUM_PATH` oppure installa Chromium e indica il suo percorso. `TEST_BASE_URL` consente di verificare il server preview anziché quello di sviluppo. Non sono necessarie variabili d'ambiente per usare l'app.
-
-## Cosa provare
-
-L'account iniziale è **Olivia Bennett**, infermiera di Willow Ward. Il pulsante **Demo data** in alto apre le utilità, disponibili anche da telefono: cambio persona/reparto, simulazione offline, avanzamento del tempo e reset dei dati sintetici.
-
-| Persona                               | Prova suggerita                                                                                                                                                  |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Olivia Bennett / James Wilson — nurse | Inbox → Take charge → outcome → Close event. La seconda infermiera non può prendere un evento già assegnato.                                                     |
-| Emma Clarke — healthcare assistant    | Report event → Fall → residente → Send event. Il report è collegato a diario, inbox infermieristica, thread e fonti delle consegne. Non può firmare né validare. |
-| Noah Reed — technician                | Report, chat, diario e contributi; parte in pausa e non riceve automaticamente alert infermieristici.                                                            |
-| Dr. Sofia Hayes — physician           | Diary → Document review: può validare il contenuto clinico dopo revisione dell'estrazione; non firma la consegna del coordinatore.                               |
-| Sarah Mitchell — coordinator          | Team overview: presenze, disponibilità, assegnazione del turno e competenze. Handover: prepara bozza, revisiona e firma.                                         |
-| Daniel Brooks — off-duty nurse        | Non riceve nuovi alert finché non effettua il check-in.                                                                                                          |
-| Amelia Scott — Cedar nurse            | Vede solo Cedar Ward; nessun accesso ai residenti o messaggi di Willow.                                                                                          |
-| Charlotte Morgan — medical management | Conteggi aggregati e CSV per reparto/periodo. Nessun accesso automatico a residenti o chat.                                                                      |
-| Alex Taylor — system administrator    | Modifica account/assegnazioni, consulta integrazioni e metadati audit. Nessun privilegio clinico implicito.                                                      |
+   |
 
 ### Percorsi collegati
 
